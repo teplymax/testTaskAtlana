@@ -43,20 +43,24 @@ export const getUsers =
 //-----------------------Search users----------------------------------------
 
 export const searchUsers =
-  () => async (dispatch: Dispatch, getState: () => RootState) => {
+  (page?: number) => async (dispatch: Dispatch, getState: () => RootState) => {
     dispatch(getUsersRequestAction());
 
     const { usersPage, searchUsersQuery } = getState().usersReducer;
 
     const response = await fetchRequest(
-      `search/users?q=${searchUsersQuery}&since=${usersPage}&per_page=100`,
+      `search/users?q=${searchUsersQuery}&since=${
+        page ? page : usersPage
+      }&per_page=100`,
       "GET"
     );
 
     const error = responseHandler(response);
 
     if (!error) {
-      dispatch(getUsersSuccessAction({ users: response.data.items }));
+      dispatch(
+        getUsersSuccessAction({ users: response.data.items, usersPage: page })
+      );
     } else {
       dispatch(getUsersErrorAction());
       dispatch(showAlertAction(error));
@@ -84,11 +88,6 @@ export const getUserDetails = async (
 
       if (!error1 && !error2) {
         onSuccess({
-          ...responses[0].data,
-          reposList: responses[1].data,
-          filteredReposList: responses[1].data,
-        });
-        console.log({
           ...responses[0].data,
           reposList: responses[1].data,
           filteredReposList: responses[1].data,

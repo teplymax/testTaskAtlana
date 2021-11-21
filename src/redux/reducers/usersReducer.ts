@@ -34,13 +34,13 @@ const usersReducer = (state = initialSatate, action: IAction): IUsersState => {
       };
 
     case UsersActionTypes.GET_USERS_SUCCESS: {
-      const { users } = action.payload;
+      const { users, usersPage } = action.payload;
 
       if (users) {
         return {
           ...state,
           users: state.usersPage === 1 ? users : [...state.users, ...users],
-          usersPage: users.slice(-1)[0]?.id,
+          usersPage: usersPage ? usersPage : users.slice(-1)[0]?.id,
           loadMoreUsers: users.length > 0,
           loading: false,
         };

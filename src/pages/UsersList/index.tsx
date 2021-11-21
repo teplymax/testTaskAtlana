@@ -36,15 +36,14 @@ const UsersList: React.FC = () => {
   //-----------Handlers----------------------------
 
   const loadMoreBtnHandler = () => {
-    console.log(searchUsersQuery);
     if (searchUsersQuery) dispatch(searchUsers());
     else dispatch(getUsers());
   };
 
   const searchInputHandler = (v: string) => {
-    dispatch(getUsersRequestAction({ searchUsersQuery: v, usersPage: 1 }));
+    dispatch(getUsersRequestAction({ searchUsersQuery: v }));
     if (v) {
-      dispatch(searchUsers());
+      dispatch(searchUsers(1));
     } else dispatch(getUsers());
   };
 
