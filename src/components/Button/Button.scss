@@ -1,0 +1,19 @@
+@import "../../scss/repeat.scss";
+@import "../../scss/colors.scss";
+
+.button {
+  @extend %button;
+  width: 100%;
+  height: 56px;
+  border-radius: 8px;
+  background-color: $primary;
+  color: #fff;
+
+  &:hover {
+    background-color: $btnActive;
+  }
+
+  &:active {
+    background-color: $btnHover;
+  }
+}

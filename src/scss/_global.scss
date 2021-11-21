@@ -1,0 +1,52 @@
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+ul,
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+a:focus {
+  outline: none;
+}
+
+body {
+  font-family: Inter;
+  background-color: #fff;
+  font-weight: 400;
+  color: #000;
+  overflow: hidden;
+  background: url("../assets/mainBg.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+div#root {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container {
+  width: 90%;
+  max-width: 1240px;
+  padding: 32px 0;
+  margin: 0 auto;
+}
